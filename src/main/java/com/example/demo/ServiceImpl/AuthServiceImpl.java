@@ -6,10 +6,12 @@ import com.example.demo.Entity.User;
 import com.example.demo.Service.IAuthService;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class AuthServiceImpl implements IAuthService {
     @Autowired
     private UserRepository userRepository;
