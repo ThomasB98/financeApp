@@ -1,6 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Entity.User;
+import com.example.demo.Service.IAdminService;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @Autowired
-    private UserRepository userRepository;
+    private IAdminService adminService;
 
     @Autowired
     private AdminRepository adminRepository;
 
     @PutMapping("/verify/{id}")
     public String verifyUser(@PathVariable Long id) {
-        User user = userRepository.findById(id).orElseThrow();
-        user.setVerified(true);
-        userRepository.save(user);
-        return "User Verified!";
+        return adminService.verifyUser(id);
     }
 }

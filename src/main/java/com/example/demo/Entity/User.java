@@ -3,9 +3,7 @@ package com.example.demo.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import java.io.Serializable;
@@ -16,6 +14,8 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 public class User implements Serializable {
 
     @Id
@@ -56,7 +56,15 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String ifscCode;
 
-    private boolean isVerified = false;
+    private boolean isVerified =false;
 
     private Role role = Role.USER;
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.isVerified = verified;
+    }
 }
