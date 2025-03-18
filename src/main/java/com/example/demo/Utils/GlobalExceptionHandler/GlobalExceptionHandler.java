@@ -1,9 +1,6 @@
 package com.example.demo.Utils.GlobalExceptionHandler;
 
-import com.example.demo.Exceptions.AdminNotFoundException;
-import com.example.demo.Exceptions.ExceptionResponse;
-import com.example.demo.Exceptions.ResourceNotFoundException;
-import com.example.demo.Exceptions.UserNotFoundException;
+import com.example.demo.Exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,6 +27,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ExceptionResponse> handleUserNotFoundException(UserNotFoundException ex) {
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
+                HttpStatus.NOT_FOUND.value(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleProductNotFoundException(ProductNotFoundException ex) {
         ExceptionResponse response = new ExceptionResponse(
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND.value(),
