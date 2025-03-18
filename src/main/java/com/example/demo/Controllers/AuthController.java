@@ -1,11 +1,13 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Dto.LoginDto;
+import com.example.demo.Dto.UserRegisterDto;
 import com.example.demo.Entity.Admin;
 import com.example.demo.Entity.User;
 import com.example.demo.Service.IAuthService;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +23,13 @@ public class AuthController {
     private IAuthService authService;
 
     @PostMapping("/user/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserRegisterDto user) {
         String response = authService.registerUser(user);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginDto user) {
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDto user) {
         User loggedInUser = authService.loginUser(user);
         if (loggedInUser != null) {
             return ResponseEntity.ok(loggedInUser);
@@ -36,7 +38,7 @@ public class AuthController {
     }
 
     @PostMapping("/admin/login")
-    public ResponseEntity<?> loginAdmin(@RequestBody LoginDto user) {
+    public ResponseEntity<?> loginAdmin(@Valid @RequestBody LoginDto user) {
         Admin loggedInAdmin = authService.loginAdmin(user);
         if (loggedInAdmin != null) {
             return ResponseEntity.ok(loggedInAdmin);

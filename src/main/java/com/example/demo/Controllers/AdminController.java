@@ -1,6 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.Entity.User;
+import com.example.demo.Exceptions.ResourceNotFoundException;
 import com.example.demo.Service.IAdminService;
 import com.example.demo.repository.AdminRepository;
 import com.example.demo.repository.UserRepository;
@@ -22,6 +23,9 @@ public class AdminController {
 
     @PutMapping("/verify/{id}")
     public String verifyUser(@PathVariable Long id) {
+        if(id<=0){
+            throw new ResourceNotFoundException("Resource with ID " + id + " not found.");
+        }
         return adminService.verifyUser(id);
     }
 }
