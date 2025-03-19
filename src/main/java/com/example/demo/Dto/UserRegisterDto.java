@@ -1,5 +1,6 @@
 package com.example.demo.Dto;
 
+import com.example.demo.Entity.CardType;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -49,4 +50,7 @@ public class UserRegisterDto {
     @NotBlank(message = "IFSC Code is required")
     @Pattern(regexp = "^[A-Z]{4}0[A-Z0-9]{6}$", message = "Invalid IFSC Code format")
     private String ifscCode;
+
+    @NotNull(message = "Card type is required")
+    private CardType cardType;
 }

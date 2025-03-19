@@ -43,7 +43,6 @@ public class EMITransactionServiceImpl implements IEMITransactionService {
     @Transactional
     @Override
     public EMITransaction purchaseProduct(ProductPurchaseDto productPurchaseDto) {
-
         User user = userService.getUserById(productPurchaseDto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("Invalid User Id: " + productPurchaseDto.getUserId()));
 
@@ -70,7 +69,6 @@ public class EMITransactionServiceImpl implements IEMITransactionService {
         emiTransaction.setEndDate(startDate.plusMonths(productPurchaseDto.getTenureMonths()));
         emiTransaction.setPaymentDueDates(paymentDueDates);
         emiTransaction.setPaid(false);
-
         return emiTransactionRepository.save(emiTransaction);
     }
 

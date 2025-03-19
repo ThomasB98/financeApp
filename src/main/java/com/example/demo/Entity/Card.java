@@ -34,4 +34,9 @@ public class Card {
     @NotNull(message = "Card type is required")
     @Enumerated(EnumType.STRING)
     private CardType cardType;
+
+    private Boolean isActivated=false;
+
+    @OneToOne(mappedBy = "card")
+    private User user;
 }

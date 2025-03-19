@@ -21,11 +21,19 @@ public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
-    @PutMapping("/verify/{id}")
+    @PutMapping("/verify/user/{id}")
     public String verifyUser(@PathVariable Long id) {
         if(id<=0){
             throw new ResourceNotFoundException("Resource with ID " + id + " not found.");
         }
         return adminService.verifyUser(id);
+    }
+
+    @PutMapping("/verify/card/{id}")
+    public String verifyCard(@PathVariable Long id){
+        if(id<=0){
+            throw new ResourceNotFoundException("Resource with ID " + id + " not found.");
+        }
+        return adminService.verifyCard(id);
     }
 }

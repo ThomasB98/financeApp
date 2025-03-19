@@ -60,6 +60,10 @@ public class User implements Serializable {
 
     private Role role = Role.USER;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id", referencedColumnName = "id", unique = true)
+    private Card card;
+
     public boolean isVerified() {
         return isVerified;
     }
