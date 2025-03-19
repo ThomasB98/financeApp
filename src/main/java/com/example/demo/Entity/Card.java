@@ -39,4 +39,6 @@ public class Card {
 
     @OneToOne(mappedBy = "card")
     private User user;
+
+    private int remainingLimit;
 }

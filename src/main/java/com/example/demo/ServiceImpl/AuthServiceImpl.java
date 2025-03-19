@@ -51,6 +51,7 @@ public class AuthServiceImpl implements IAuthService {
         newCard.setName(user.getName() + "'s EMI Card");
         newCard.setValidTill(CardUtils.generateValidTillDate());
         newCard.setCardType(dto.getCardType()); // Assume the user selects card type
+        newCard.setRemainingLimit(dto.getCardType().getCashLimit());
         newCard.setIsActivated(false);
 
         // Assign card to user

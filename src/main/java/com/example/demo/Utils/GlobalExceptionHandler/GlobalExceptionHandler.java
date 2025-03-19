@@ -25,6 +25,26 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<ExceptionResponse> handleInsufficientBalanceException(InsufficientBalanceException ex) {
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidCardDetailsException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidCardDetailsException(InvalidCardDetailsException ex) {
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ExceptionResponse> handleUserNotFoundException(UserNotFoundException ex) {
         ExceptionResponse response = new ExceptionResponse(
